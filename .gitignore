@@ -4,3 +4,7 @@
 
 /ExploreHttpContext
 /.vs
+/ServiceScope
+/MimicSession/.vs/MimicSession
+/MimicSession/MimicSession/bin/Debug/net7.0
+/MimicSession/MimicSession/obj
