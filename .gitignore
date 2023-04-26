@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/ExploreHttpContext/.vs
+/ExploreHttpContext/ExploreHttpContext/obj
+/ExploreHttpContext/ExporeHttpContextCommon/obj
+/ExploreHttpContext/ExporeHttpContextCommon/bin/Debug/net7.0
