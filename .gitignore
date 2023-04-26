@@ -4,3 +4,5 @@
 
 /ExploreHttpContext
 /.vs
+/ServiceScope/.vs
+/ServiceScope/ServiceScope/obj
