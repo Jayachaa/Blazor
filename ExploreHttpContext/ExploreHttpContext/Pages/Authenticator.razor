@@ -1,0 +1,28 @@
+﻿@page "/authenticator"
+@    using ExploreHttpContextCommon;
+    using ExploreHttpContextCommon.Logic
+@inject IUserContext _UserContext;
+
+
+<h3>Authenticator</h3>
+
+<button class="btn btn-primary" @onclick="GetAuthenticationInfo">Get authentication info</button>
+
+@if(!string.IsNullOrEmpty(strAuthenticationInfo))
+{
+    <div style="background-color: beige">
+        <br/>
+        @strAuthenticationInfo
+    </div>
+}
+
+@code {
+    private string strAuthenticationInfo = string.Empty;
+
+    private void GetAuthenticationInfo()
+    {
+        IAuthenticator authenticator = InstanceActivator.GetInstance<IAuthenticator>();
+        strAuthenticationInfo = authenticator.GetAuthenticationInfo(_UserContext);
+    }
+
+}

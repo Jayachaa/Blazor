@@ -10,8 +10,8 @@ namespace ExploreHttpContextCommon
     public class HttpContextAccessorCommon : IHttpContextAccessorCommon
     {
         #region Fields
-        //private static HttpContext? _context;
-        private HttpContext? _context;
+        private static HttpContext? _context;
+        //private HttpContext? _context;
         #endregion
 
         #region Properties

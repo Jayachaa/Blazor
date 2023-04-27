@@ -1,4 +1,3 @@
-using ExploreHttpContext;
 using ExploreHttpContext.Data;
 using ExploreHttpContextCommon;
 
@@ -11,13 +10,10 @@ builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddSession();
 builder.Services.AddHttpContextAccessor();
 
-
 builder.Services.AddScoped<IHttpContextAccessorCommon, HttpContextAccessorCommon>();
-builder.Services.AddScoped<UserContext>();
+builder.Services.AddScoped<IUserContext, UserContext>();
 
 WebApplication app = builder.Build();
-
-
 
 // Application
 app.Lifetime.ApplicationStarted.Register(HttpApplications.Application_Start);
@@ -26,47 +22,29 @@ app.Lifetime.ApplicationStopped.Register(HttpApplications.Application_End);
 // Configure the HTTP request pipeline.
 if(!app.Environment.IsDevelopment())
 {
-	app.UseExceptionHandler("/Error");
-	// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-	app.UseHsts();
+    app.UseExceptionHandler("/Error");
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseHsts();
 }
-
-
-
 
 app.UseHttpsRedirection();
 
 app.UseStaticFiles();
 app.UseSession();
 
-
-
 app.UseRouting();
 
-//app.Use(async (context, next) =>
-//		{
-//			//HttpContextAccessorCommon.Current = context;
-//			await next();
-//		});
-
-// HttpContext
-//app.UseHttpContextMiddleware();
-
-// Use extension with RequestServices
+// middleware set context
 app.Use(
         async (context, next) =>
         {
-            {
-                var httpContextAccessorCommon = context.RequestServices.GetService<IHttpContextAccessorCommon>();
-                if(httpContextAccessorCommon != null) httpContextAccessorCommon.Current = context;
-            }
+            IHttpContextAccessorCommon? httpContextAccessorCommon = context.RequestServices.GetService<IHttpContextAccessorCommon>();
+            if(httpContextAccessorCommon != null) httpContextAccessorCommon.Current = context;
 
             await next();
         });
-
 
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
 
 app.Run();
-

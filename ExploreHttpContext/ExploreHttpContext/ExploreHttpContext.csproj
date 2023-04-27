@@ -10,4 +10,10 @@
     <ProjectReference Include="..\ExporeHttpContextCommon\ExploreHttpContextCommon.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="ExploreHttpContextLogic">
+      <HintPath>..\ExploreHttpContextLogic\bin\Debug\net7.0\ExploreHttpContextLogic.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

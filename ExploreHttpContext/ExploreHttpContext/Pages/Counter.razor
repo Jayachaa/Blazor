@@ -1,8 +1,7 @@
 ﻿@page "/counter"
 @using ExploreHttpContextCommon
 
-@inject NavigationManager nav;
-@inject UserContext _UserContext;
+@inject IUserContext _UserContext;
 
 <PageTitle>Counter</PageTitle>
 
@@ -13,8 +12,8 @@
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 <div>
-    <input type="text" @bind="@Name1" />
-    <input type="text" @bind="@FirstName1" />
+    <input type="text" @bind="@Name"/>
+    <input type="text" @bind="@FirstName"/>
     <button class="btn btn-primary" @onclick="ShowContext">ShowContext value</button>
 </div>
 @if(bShowHttpContext)
@@ -31,23 +30,22 @@
 }
 
 @code {
-    private int currentCount = 0;
+    private int currentCount;
 
     private bool bShowHttpContext;
-    private string Name1 = string.Empty; 
-    private string FirstName1 = string.Empty;
+    private string Name = string.Empty;
+    private string FirstName = string.Empty;
 
     private void IncrementCount()
     {
         currentCount++;
-
     }
 
     private void ShowContext()
     {
-        
-        _UserContext.UserInfo = new User { Name = Name1, FirstName = FirstName1 };
-        
+        _UserContext.UserInfo = new User { Name = Name, FirstName = FirstName };
+
         bShowHttpContext = true;
     }
+
 }

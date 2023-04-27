@@ -2,7 +2,12 @@
 
 namespace ExploreHttpContextCommon
 {
-    public class UserContext
+    public interface IUserContext
+    {
+        User UserInfo { get; set; }
+    }
+
+    public class UserContext : IUserContext
     {
         #region Constants
         public const string CALLCONTEXT_USER = "User";
