@@ -15,3 +15,5 @@
 /ExploreHttpContext/ExploreHttpContext/bin/Release/net7.0
 /ExploreHttpContext/ExploreHttpContextLogic/bin/Release/net7.0
 /ExploreHttpContext/ExploreHttpContextLogic/bin/Debug/net7.0
+/ExploreUserContext
+/ExploreUserContextCommon
