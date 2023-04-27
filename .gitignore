@@ -9,3 +9,6 @@
 /ExploreUserContext/obj
 /ExploreUserContext/bin
 /ExploreUserContext/.vs/ExploreUserContext
+/ExploreUserContextCommon
+/ExploreUserContext/.vs/ProjectEvaluation
+/.gitignore
