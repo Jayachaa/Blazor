@@ -6,3 +6,6 @@
 /.vs
 /ServiceScope
 /MimicSession
+/ExploreUserContext/obj
+/ExploreUserContext/bin
+/ExploreUserContext/.vs/ExploreUserContext
