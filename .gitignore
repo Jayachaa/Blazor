@@ -12,3 +12,8 @@
 /ExploreUserContextCommon
 /ExploreUserContext/.vs/ProjectEvaluation
 /.gitignore
+/ExploreUserContext/ExploreUserContextCommon/obj/Debug/net7.0
+/ExploreUserContext/ExploreUserContextCommon/bin/Debug/net7.0
+/ExploreUserContext/ExploreUserContextCommon/obj
+/ExploreUserContext/ExploreUserContextLogic/bin/Debug/net7.0
+/ExploreUserContext/ExploreUserContextLogic/obj
