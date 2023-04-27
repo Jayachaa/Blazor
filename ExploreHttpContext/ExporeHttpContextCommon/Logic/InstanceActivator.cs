@@ -1,4 +1,4 @@
-﻿namespace ExploreHttpContextCommon.Logic
+﻿namespace ExploreHttpContextCommon
 {
     public class InstanceActivator
     {

@@ -1,0 +1,41 @@
+﻿@page "/users"
+@using ExploreHttpContextCommon
+
+@inject IUserContext _UserContext;
+
+<PageTitle>User</PageTitle>
+
+<h3>User</h3>
+
+<div>
+    <input type="text" @bind="@Name"/>
+    <input type="text" @bind="@FirstName"/>
+    <button class="btn btn-primary" @onclick="ShowContext">ShowContext value</button>
+</div>
+@if(bShowHttpContext)
+{
+    <div style="font: bold; background-color: burlywood">
+        Value from http context item
+    </div>
+    <div style="background-color: aliceblue">
+        Name: @_UserContext.UserInfo.Name
+    </div>
+    <div style="background-color: aliceblue">
+        FirstName: @_UserContext.UserInfo.FirstName
+    </div>
+}
+
+@code {
+
+    private bool bShowHttpContext;
+    private string Name = string.Empty;
+    private string FirstName = string.Empty;
+
+    private void ShowContext()
+    {
+        _UserContext.UserInfo = new User { Name = Name, FirstName = FirstName };
+
+        bShowHttpContext = true;
+    }
+
+}
