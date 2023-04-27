@@ -1,15 +1,16 @@
 using ExploreUserContext.Data;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
+using ExploreUserContextCommon;
 
-var builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
+builder.Services.AddScoped<HttpContextAccessors>();
+builder.Services.AddScoped<UserContext>();
 
-var app = builder.Build();
+WebApplication app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if(!app.Environment.IsDevelopment())
@@ -24,6 +25,15 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+// middleware set context
+app.Use(
+        async (context, next) =>
+        {
+            HttpContextAccessors.Current = context;
+
+            await next();
+        });
 
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");

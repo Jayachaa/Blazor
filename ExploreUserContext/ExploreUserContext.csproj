@@ -6,4 +6,25 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="ExploreUserContextCommon\**" />
+    <Compile Remove="ExploreUserContextLogic\**" />
+    <Content Remove="ExploreUserContextCommon\**" />
+    <Content Remove="ExploreUserContextLogic\**" />
+    <EmbeddedResource Remove="ExploreUserContextCommon\**" />
+    <EmbeddedResource Remove="ExploreUserContextLogic\**" />
+    <None Remove="ExploreUserContextCommon\**" />
+    <None Remove="ExploreUserContextLogic\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="ExploreUserContextCommon\ExploreUserContextCommon.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="ExploreUserContextLogic">
+      <HintPath>ExploreUserContextLogic\bin\Debug\net7.0\ExploreUserContextLogic.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
