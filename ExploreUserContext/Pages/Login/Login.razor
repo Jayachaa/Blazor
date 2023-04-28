@@ -1,0 +1,49 @@
+﻿@page "/"
+@using ExploreUserContextCommon
+@layout LoginLayout
+@inject NavigationManager navigation
+
+@*class="wrapper fadeInDown"*@
+<div class="wrapper">
+    <div id="formContent">
+
+        <!-- Icon -->
+        <div class="fadeIn first">
+            Login
+        </div>
+
+        <!-- Login Form -->
+        <EditForm Model="@model" OnValidSubmit="Submit">
+            <input type="text" id="login" class="fadeIn " @bind-value="model.EMail" name="login" placeholder="login">
+            <input type="text" id="password" class="fadeIn " @bind-value="model.Password" name="login" placeholder="password">
+            <input type="submit" class="fadeIn " value="Log In">
+        </EditForm>
+
+        @if(!string.IsNullOrEmpty(strInfo))
+        {
+            <div id="formFooter" style="color: red">
+                @strInfo
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    readonly User model = new User() { EMail = "", Password = "" };
+    string? strInfo;
+
+    private void Submit()
+    {
+        if(model.EMail.ToLower() == "dev@m-s.ch" && model.Password == "123456")
+        {
+            navigation.NavigateTo("/index");
+
+            HttpApplications.Session_Start();
+        }
+        else
+        {
+            strInfo = "please give valid info!!!";
+        }
+    }
+
+}

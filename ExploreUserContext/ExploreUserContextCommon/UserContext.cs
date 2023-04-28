@@ -53,6 +53,8 @@ namespace ExploreUserContextCommon
         #region Properties
         public string Name { get; set; } = "A";
         public string FirstName { get; set; } = "B";
+        public string EMail { get; set; } = "A";
+        public string Password { get; set; } = "";
         #endregion
     }
 }

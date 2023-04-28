@@ -1,4 +1,6 @@
-﻿@inherits LayoutComponentBase
+﻿@using ExploreUserContextCommon
+@inherits LayoutComponentBase
+@inject NavigationManager NavigationManager
 
 <PageTitle>ExploreUserContext</PageTitle>
 
@@ -9,6 +11,8 @@
 
     <main>
         <div class="top-row px-4">
+            <a @onclick="Logout" style="color: rgb(146, 186, 221); cursor: pointer">Logout</a>
+            
             <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
         </div>
 
@@ -17,3 +21,13 @@
         </article>
     </main>
 </div>
+
+@code
+{
+    private void Logout()
+    {
+        HttpApplications.Session_End();
+
+        NavigationManager.NavigateTo("/");
+    }
+}

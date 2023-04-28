@@ -12,6 +12,9 @@ builder.Services.AddScoped<UserContext>();
 
 WebApplication app = builder.Build();
 
+app.Lifetime.ApplicationStarted.Register(HttpApplications.Application_Start);
+app.Lifetime.ApplicationStopped.Register(HttpApplications.Application_End);
+
 // Configure the HTTP request pipeline.
 if(!app.Environment.IsDevelopment())
 {

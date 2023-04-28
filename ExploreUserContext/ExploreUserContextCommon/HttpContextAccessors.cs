@@ -4,8 +4,14 @@ namespace ExploreUserContextCommon
 {
     public class HttpContextAccessors
     {
+        private static HttpContext? s_current;
+
         #region Properties
-        public static HttpContext? Current { get; set; }
+        public static HttpContext? Current
+        {
+            get => s_current;
+            set => s_current = value;
+        }
         #endregion
     }
 }
