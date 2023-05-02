@@ -60,7 +60,7 @@ namespace BayView_CSV_Reader
                         sw.Write(",");
                         sw.Write(entry.Value.Kitchen ?? 0);
                         sw.Write(",");
-                        sw.Write((entry.Value.RO1 ?? 0) + (entry.Value.RO2 ?? 0));
+                        sw.Write((entry.Value.Kitchen2 ?? 0) + (entry.Value.RO ?? 0) + (entry.Value.RO1 ?? 0) + (entry.Value.RO2 ?? 0));
                         sw.Write(",");
                         sw.Write((entry.Value.Tank1 ?? 0) + (entry.Value.Tank2 ?? 0));
                         sw.Write(",");
@@ -75,7 +75,7 @@ namespace BayView_CSV_Reader
                     dBR4 += entry.Value.Bath4 ?? 0;
                     dBR5 += entry.Value.Bath5 ?? 0;
                     dKit1 += entry.Value.Kitchen ?? 0;
-                    dKit2 += ((entry.Value.RO1 ?? 0) + (entry.Value.RO2 ?? 0));
+                    dKit2 += (entry.Value.Kitchen2 ?? 0) + (entry.Value.RO ?? 0) + (entry.Value.RO1 ?? 0) + (entry.Value.RO2 ?? 0);
                     dCommercial += ((entry.Value.Tank1 ?? 0) + (entry.Value.Tank2 ?? 0));
                     dGarden += ((entry.Value.Garden1 ?? 0) + (entry.Value.Garden2 ?? 0));
                 }

@@ -134,11 +134,13 @@ namespace BayView_CSV_Reader
                             reading.Bath5 = Convert.ToDecimal(record[item.Item1]);
                             break;
                         case KIT_TANK:
-                        case RO_RO:
                             reading.Kitchen = Convert.ToDecimal(record[item.Item1]);
                             break;
                         case KIT2_TANK:
                             reading.Kitchen2 = Convert.ToDecimal(record[item.Item1]);
+                            break;
+                        case RO_RO:
+                            reading.RO = Convert.ToDecimal(record[item.Item1]);
                             break;
                         case RO1_RO:
                             reading.RO1 = Convert.ToDecimal(record[item.Item1]);

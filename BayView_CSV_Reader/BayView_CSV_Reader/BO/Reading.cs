@@ -15,6 +15,7 @@ namespace BayView_CSV_Reader
         public decimal? Bath5 { get; set; }
         public decimal? Kitchen { get; set; } // add to bath - all are normal now
         public decimal? Kitchen2 { get; set; } // add to bath - all are normal now
+        public decimal? RO { get; set; } // add to bath - all are normal now
         public decimal? RO1 { get; set; } // add to bath - all are normal now
         public decimal? RO2 { get; set; } // add to bath - all are normal now
         public decimal? Tank1 { get; set; }
