@@ -4,3 +4,7 @@
 
 /ExploreHttpContext
 /.vs
+/BayView_CSV_Reader/BayViewTest/obj
+/BayView_CSV_Reader/.vs/BayView_CSV_Reader
+/BayView_CSV_Reader/BayView_CSV_Reader/bin/Debug
+/BayView_CSV_Reader/BayView_CSV_Reader/obj
