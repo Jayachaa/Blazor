@@ -6,7 +6,9 @@ namespace ExploreHttpContextLogic
     {
         public string GetAuthenticationInfo(IUserContext userContext)
         {
-            return $"Hi `{userContext.UserInfo.Name}`, you are authenticated!!!";
+            return string.IsNullOrEmpty(userContext.UserInfo.Name) ? 
+                $"Hi, you are not authenticated!!!" : 
+                $"Hi `{userContext.UserInfo.Name}`, you are authenticated!!!";
         }
     }
 }

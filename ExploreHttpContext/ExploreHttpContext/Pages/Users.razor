@@ -10,7 +10,7 @@
 <div>
     <input type="text" @bind="@Name"/>
     <input type="text" @bind="@FirstName"/>
-    <button class="btn btn-primary" @onclick="ShowContext">ShowContext value</button>
+    <button class="btn btn-primary" @onclick="SetContext">Set & Show Context value</button>
 </div>
 @if(bShowHttpContext)
 {
@@ -31,7 +31,7 @@
     private string Name = string.Empty;
     private string FirstName = string.Empty;
 
-    private void ShowContext()
+    private void SetContext()
     {
         _UserContext.UserInfo = new User { Name = Name, FirstName = FirstName };
 
