@@ -29,6 +29,21 @@
         <a class="dismiss">🗙</a>
     </div>
 
-    <script src="_framework/blazor.server.js"></script>
+@*<script src="_framework/blazor.server.js" autostart="false"></script>
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function() {
+        Blazor.start().then(function ()
+        {
+            debugger;
+            console.log("Started ");
+        });
+    });
+    
+    window.addEventListener('pagehide', () => {
+            debugger;
+        Blazor.disconnect();
+    });
+</script>*@
+<script src="_framework/blazor.server.js"></script>
 </body>
 </html>
