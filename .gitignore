@@ -4,3 +4,11 @@
 
 /ExploreHttpContext
 /.vs
+/BayView_CSV_Reader
+/ExploreUserContext
+/ExploreUserContextCommon
+/MimicSession
+/ServiceScope
+/BlazorWithCircuit/bin/Debug/net7.0
+/BlazorWithCircuit/.vs/BlazorWithCircuit
+/BlazorWithCircuit/obj
