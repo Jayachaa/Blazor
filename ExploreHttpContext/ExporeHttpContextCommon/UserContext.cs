@@ -14,7 +14,7 @@ namespace ExploreHttpContextCommon
         #endregion
 
         #region Fields
-        private readonly IHttpContextAccessorCommon _httpContextAccessorCommon;
+        private readonly IHttpContextAccessor _httpContextAccessor;
         #endregion
 
         #region Properties
@@ -22,7 +22,7 @@ namespace ExploreHttpContextCommon
         {
             get
             {
-                HttpContext context = _httpContextAccessorCommon.Current;
+                HttpContext context = _httpContextAccessor.HttpContext;
                 User? userInfo = CallContext.GetData(CALLCONTEXT_USER) as User;
 
                 if(context != null && userInfo == null)
@@ -47,7 +47,7 @@ namespace ExploreHttpContextCommon
                     CallContext.FreeNamedDataSlot(CALLCONTEXT_USER);
                 }
 
-                HttpContext context = _httpContextAccessorCommon.Current;
+                HttpContext context = _httpContextAccessor.HttpContext;
                 if(context != null)
                 {
                     context.Items[CALLCONTEXT_USER] = value;
@@ -57,9 +57,9 @@ namespace ExploreHttpContextCommon
         #endregion
 
         #region Constructors
-        public UserContext(IHttpContextAccessorCommon httpContextAccessorCommon)
+        public UserContext(IHttpContextAccessor httpContextAccessor)
         {
-            _httpContextAccessorCommon = httpContextAccessorCommon;
+            _httpContextAccessor = httpContextAccessor;
         }
         #endregion
     }

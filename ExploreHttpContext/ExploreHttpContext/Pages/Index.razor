@@ -1,7 +1,6 @@
 ﻿@page "/"
-@using ExploreHttpContextCommon
 
-@inject IHttpContextAccessorCommon _HttpContextAccessorCommon
+@inject IHttpContextAccessor _httpContextAccessor
 
 <PageTitle>Index</PageTitle>
 
@@ -9,13 +8,6 @@
 
 Welcome to your new app.
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+<SurveyPrompt Title="How is Blazor working for you?"/>
 
-@*<div>@_HttpContextAccessorCommon.Current.Request.Path</div>*@
-@code
-{
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-    }
-}
+<div>@_httpContextAccessor.HttpContext?.Request.Path</div>

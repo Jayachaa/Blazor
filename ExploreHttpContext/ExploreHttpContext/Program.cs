@@ -10,7 +10,6 @@ builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddSession();
 builder.Services.AddHttpContextAccessor();
 
-builder.Services.AddScoped<IHttpContextAccessorCommon, HttpContextAccessorCommon>();
 builder.Services.AddScoped<IUserContext, UserContext>();
 
 WebApplication app = builder.Build();
@@ -33,16 +32,6 @@ app.UseStaticFiles();
 app.UseSession();
 
 app.UseRouting();
-
-// middleware set context
-app.Use(
-        async (context, next) =>
-        {
-            IHttpContextAccessorCommon? httpContextAccessorCommon = context.RequestServices.GetService<IHttpContextAccessorCommon>();
-            if(httpContextAccessorCommon != null) httpContextAccessorCommon.Current = context;
-
-            await next();
-        });
 
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
