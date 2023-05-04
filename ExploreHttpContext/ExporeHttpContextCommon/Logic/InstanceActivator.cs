@@ -1,4 +1,6 @@
-﻿namespace ExploreHttpContextCommon
+﻿using System.Reflection;
+
+namespace ExploreHttpContextCommon
 {
     public class InstanceActivator
     {
@@ -8,7 +10,12 @@
             return (T)GetInstance(typeof(T));
         }
 
-        public static object GetInstance(Type t)
+        public static T GetInstance<T>(object[] args)
+        {
+            return (T) GetInstance(typeof(T), args);
+        }
+
+        public static object GetInstance(Type t, object[] args = null)
         {
             if (t == null) throw new ArgumentNullException("t");
             if (!t.IsInterface) throw new ArgumentException(string.Format("'{0}' is not an interface.", t.FullName));
@@ -46,7 +53,7 @@
                 throw new TypeLoadException(string.Format("Type '{0}' does not implement Interface '{1}'.", strTypeFullName, t.FullName));
             }
 
-            oFacade = CreateInstance(typeImplementing);
+            oFacade = args == null?CreateInstance(typeImplementing): CreateInstance(typeImplementing, args);
 
             return oFacade;
         }
@@ -60,6 +67,18 @@
             catch (Exception e)
             {
                 throw new ApplicationException($"Creating an instance of type '{type}' failed.", e);
+            }
+        }
+
+        public static object CreateInstance(Type type, object[] args)
+        {
+            try
+            {
+                return Activator.CreateInstance(type, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance, null, args, null);
+            }
+            catch(Exception e)
+            {
+                throw new ApplicationException($"Creating an instance of type '{type}' with {args?.Length ?? 0} parameters failed.", e);
             }
         }
         #endregion

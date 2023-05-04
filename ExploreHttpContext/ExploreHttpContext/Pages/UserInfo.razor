@@ -1,0 +1,29 @@
+﻿@page "/userinfo"
+@using ExploreHttpContextCommon
+
+@inject IUserContext _UserContext;
+
+<h3>UserInfo</h3>
+<PageTitle>UserInfo</PageTitle>
+
+
+<button class="btn btn-primary" @onclick="GetFirstName">Get user first name</button>
+
+@if(!string.IsNullOrEmpty(strFirstName))
+{
+    <div style="background-color: beige">
+        <br/>
+        @strFirstName
+    </div>
+}
+
+@code {
+    private string strFirstName = string.Empty;
+
+    private void GetFirstName()
+    {
+        IUserInfo info = InstanceActivator.GetInstance<IUserInfo>(new object[] { _UserContext });
+        strFirstName = info.GetUserFirstName();
+    }
+
+}
