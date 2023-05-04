@@ -7,8 +7,10 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
-builder.Services.AddScoped<HttpContextAccessors>();
-builder.Services.AddScoped<UserContext>();
+
+//// https://www.strathweb.com/2016/12/accessing-httpcontext-outside-of-framework-components-in-asp-net-core/
+//builder.Services.AddScoped<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddHttpContextAccessor();
 
 WebApplication app = builder.Build();
 
@@ -30,10 +32,12 @@ app.UseStaticFiles();
 app.UseRouting();
 
 // middleware set context
+// https://www.strathweb.com/2016/12/accessing-httpcontext-outside-of-framework-components-in-asp-net-core/
 app.Use(
         async (context, next) =>
         {
-            HttpContextAccessors.Current = context;
+            IHttpContextAccessor? httpContextAccessor = app.Services.GetRequiredService<IHttpContextAccessor>();
+            HttpContextAccessors.Configure(httpContextAccessor);
 
             await next();
         });

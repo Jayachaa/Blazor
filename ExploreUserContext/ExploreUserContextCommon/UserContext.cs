@@ -51,8 +51,8 @@ namespace ExploreUserContextCommon
     public class User
     {
         #region Properties
-        public string Name { get; set; } = "A";
-        public string FirstName { get; set; } = "B";
+        public string Name { get; set; } = "";
+        public string FirstName { get; set; } = "";
         public string EMail { get; set; } = "A";
         public string Password { get; set; } = "";
         #endregion
