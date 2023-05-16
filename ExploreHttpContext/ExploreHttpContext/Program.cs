@@ -1,3 +1,4 @@
+using ExploreHttpContext;
 using ExploreHttpContext.Data;
 using ExploreHttpContextCommon;
 
@@ -9,6 +10,7 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddSession();
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddHostedService<HostedService>();
 
 builder.Services.AddScoped<IUserContext, UserContext>();
 
