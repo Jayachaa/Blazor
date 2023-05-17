@@ -12,6 +12,8 @@ builder.Services.AddSession();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddHostedService<HostedService>();
 
+builder.Services.AddApplicationInsightsTelemetry();
+
 builder.Services.AddScoped<IUserContext, UserContext>();
 
 WebApplication app = builder.Build();

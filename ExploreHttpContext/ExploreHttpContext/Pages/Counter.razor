@@ -1,5 +1,8 @@
 ﻿@page "/counter"
 
+@inject IHttpContextAccessor _httpContextAccessor
+@inject NavigationManager _navigationManager
+
 <PageTitle>Counter</PageTitle>
 
 <h1>Counter</h1>
@@ -7,6 +10,18 @@
 <p role="status">Current count: @currentCount</p>
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<button class="btn btn-primary" @onclick="NavtoFetchData">Go to Fetch data</button>
+
+<div>@_httpContextAccessor.HttpContext?.Request.Path</div>
+
+@if(_httpContextAccessor.HttpContext?.Session != null)
+{
+    <div>Session id : @_httpContextAccessor.HttpContext?.Session.Id</div>
+}
+else
+{
+    <div>Session is not valid </div>
+}
 
 @code {
     private int currentCount;
@@ -14,5 +29,10 @@
     private void IncrementCount()
     {
         currentCount++;
+    }
+
+    private void NavtoFetchData()
+    {
+        _navigationManager.NavigateTo("/fetchdata", true);
     }
 }

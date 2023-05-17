@@ -1,6 +1,7 @@
 ﻿@page "/fetchdata"
 @using ExploreHttpContext.Data
 @inject WeatherForecastService ForecastService
+@inject NavigationManager _navigationManager
 
 <PageTitle>Weather forecast</PageTitle>
 
@@ -16,25 +17,27 @@ else
 {
     <table class="table">
         <thead>
-            <tr>
-                <th>Date</th>
-                <th>Temp. (C)</th>
-                <th>Temp. (F)</th>
-                <th>Summary</th>
-            </tr>
+        <tr>
+            <th>Date</th>
+            <th>Temp. (C)</th>
+            <th>Temp. (F)</th>
+            <th>Summary</th>
+        </tr>
         </thead>
         <tbody>
-            @foreach (var forecast in forecasts)
-            {
-                <tr>
-                    <td>@forecast.Date.ToShortDateString()</td>
-                    <td>@forecast.TemperatureC</td>
-                    <td>@forecast.TemperatureF</td>
-                    <td>@forecast.Summary</td>
-                </tr>
-            }
+        @foreach (var forecast in forecasts)
+        {
+            <tr>
+                <td>@forecast.Date.ToShortDateString()</td>
+                <td>@forecast.TemperatureC</td>
+                <td>@forecast.TemperatureF</td>
+                <td>@forecast.Summary</td>
+            </tr>
+        }
         </tbody>
     </table>
+
+    <button class="btn btn-primary" @onclick="NavtoCounterData">Go to counter page</button>
 }
 
 @code {
@@ -43,5 +46,10 @@ else
     protected override async Task OnInitializedAsync()
     {
         forecasts = await ForecastService.GetForecastAsync(DateOnly.FromDateTime(DateTime.Now));
+    }
+
+    private void NavtoCounterData()
+    {
+        _navigationManager.NavigateTo("/counter", true);
     }
 }
