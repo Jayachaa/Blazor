@@ -1,6 +1,7 @@
 using ExploreHttpContext;
 using ExploreHttpContext.Data;
 using ExploreHttpContextCommon;
+using Microsoft.AspNetCore.Components.Server.Circuits;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +16,7 @@ builder.Services.AddHostedService<HostedService>();
 builder.Services.AddApplicationInsightsTelemetry();
 
 builder.Services.AddScoped<IUserContext, UserContext>();
+builder.Services.AddSingleton<CircuitHandler, AppCircuitHandler>();
 
 WebApplication app = builder.Build();
 
