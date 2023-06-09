@@ -18,7 +18,9 @@ builder.Services.AddApplicationInsightsTelemetry();
 builder.Services.AddScoped<IUserContext, UserContext>();
 builder.Services.AddSingleton<CircuitHandler, AppCircuitHandler>();
 
+Console.WriteLine("Before build application: time - " + DateTime.Now);
 WebApplication app = builder.Build();
+Console.WriteLine("After build application: time - " + DateTime.Now);
 
 // Application
 app.Lifetime.ApplicationStarted.Register(HttpApplications.Application_Start);
@@ -27,10 +29,18 @@ app.Lifetime.ApplicationStopped.Register(HttpApplications.Application_End);
 // Configure the HTTP request pipeline.
 if(!app.Environment.IsDevelopment())
 {
+    
     app.UseExceptionHandler("/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
+app.Use(
+        async (context, next) =>
+        {
+	        Console.WriteLine("In middleware: time - " + DateTime.Now);
+			await next(context);
+        });
 
 app.UseHttpsRedirection();
 

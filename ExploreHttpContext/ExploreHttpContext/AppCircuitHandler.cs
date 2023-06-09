@@ -23,6 +23,7 @@ namespace ExploreHttpContext
 		#region Privates
 		private void SessionStart()
 		{
+
 			Console.WriteLine("AppCircuitHandler - Circuit started: time - " + DateTime.Now);
 			//HttpApplication.Session_Start();
 		}

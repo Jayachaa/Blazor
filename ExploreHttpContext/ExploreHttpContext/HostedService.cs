@@ -1,34 +1,31 @@
 ﻿namespace ExploreHttpContext
 {
-    public class HostedService: IHostedService
-    {
-        public Task StartAsync(CancellationToken cancellationToken)
-        {
-            Console.WriteLine("HostedService - app started: time - " + DateTime.Now);
-            return Task.CompletedTask;
-        }
+	public class HostedService : IHostedService
+	{
+		#region Publics
+		public Task StartAsync(CancellationToken cancellationToken)
+		{
+			Console.WriteLine("HostedService - app started: time - " + DateTime.Now);
 
-        public Task StopAsync(CancellationToken cancellationToken)
-        {
-            Console.WriteLine("HostedService - app stopped: time - " + DateTime.Now);
+			WaitHostToStart();
 
-            return Task.CompletedTask;
-        }
-    }
+			Console.WriteLine("HostedService - app started: waited time - " + DateTime.Now);
+			return Task.CompletedTask;
+		}
 
-    public class HostLifetimeService : IHostLifetime
-    {
-        public Task StopAsync(CancellationToken cancellationToken)
-        {
-            Console.WriteLine("HostLifetimeService - app started: time - " + DateTime.Now);
-            return Task.CompletedTask;
-        }
+		public Task StopAsync(CancellationToken cancellationToken)
+		{
+			Console.WriteLine("HostedService - app stopped: time - " + DateTime.Now);
 
-        public Task WaitForStartAsync(CancellationToken cancellationToken)
-        {
-            Console.WriteLine("HostLifetimeService - app stopped: time - " + DateTime.Now);
+			return Task.CompletedTask;
+		}
+		#endregion
 
-            return Task.CompletedTask;
-        }
-    }
+		#region Privates
+		private static void WaitHostToStart()
+		{
+			Thread.Sleep(5000);
+		}
+		#endregion
+	}
 }
