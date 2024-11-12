@@ -2,7 +2,7 @@
 
 <div class="page">
     <div class="sidebar">
-        <NavMenu />
+        <NavMenu/>
     </div>
 
     <main>
@@ -12,6 +12,14 @@
 
         <article class="content px-4">
             @Body
+            @* <ErrorBoundary Context="exception">
+                <ChildContent>
+                    @Body
+                </ChildContent>
+                <ErrorContent>
+                    <p class="errorUI">@exception.Message</p>
+                </ErrorContent>
+            </ErrorBoundary> *@
         </article>
     </main>
 </div>
