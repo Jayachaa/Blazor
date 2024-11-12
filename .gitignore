@@ -4,3 +4,6 @@
 
 /ExploreHttpContext
 /.vs
+/BlazorErrorBoundary/BlazorErrorBoundary/bin/Debug/net8.0
+/BlazorErrorBoundary/.vs/BlazorErrorBoundary
+/BlazorErrorBoundary/BlazorErrorBoundary/obj
