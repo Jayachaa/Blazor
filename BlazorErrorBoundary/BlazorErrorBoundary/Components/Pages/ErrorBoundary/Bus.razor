@@ -1,5 +1,11 @@
 ﻿<h3>Bus</h3>
 
-@code {
+<button @onclick="ThrowError1">ThrowError</button>
 
+@code {
+    private void ThrowError1()
+    {
+        throw new Exception("Not a good bus");
+    }
 }
+

@@ -1,37 +1,34 @@
 ﻿@page "/ShowError"
-@* @rendermode InteractiveServer *@
-@inject HtmlRendererService HtmlRenderer
 
-<h3>ShowError</h3>
-@* <Car></Car> *@
-    @*     <ErrorBoundary>
-        <Car></Car>
-    </ErrorBoundary> *@
 <ErrorBoundary Context="exception" @ref="errorBoundary">
-        <ChildContent>
-            <Car></Car>
-            @* <DynamicComponent Type="type"></DynamicComponent> *@
-            <p>@strError</p>
-        </ChildContent>
-        <ErrorContent>
-            <p class="errorUI"><b>Error: </b>@exception.Message</p>
-        </ErrorContent>
-    </ErrorBoundary>
+    <ChildContent>
+        @* <Car></Car> *@
+        <DynamicComponent Type="type"></DynamicComponent>
+        <p>@strError</p>
+    </ChildContent>
+    <ErrorContent>
+        <p class="errorUI">
+            <b>Error: </b>@exception.Message
+        </p>
+    </ErrorContent>
+</ErrorBoundary>
 
 <button @onclick="ShowBus">ShowBus</button>
-    
-    @code
-    {
-        private string strError = "Test error";
-    private ErrorBoundary? errorBoundary;
-        private Type type = typeof(Car);
-        private void ShowBus()
-        {
-        strError = "Test error from Bus";
-            type = typeof(Bus);
-        
-          //StateHasChanged();
 
+@code
+{
+    private string strError = "Test error";
+
+    private ErrorBoundary? errorBoundary;
+
+    private Type type = typeof(Car);
+
+    private void ShowBus()
+    {
+        //StateHasChanged();
         //errorBoundary?.Recover();
-        }
+
+        strError = "Test error from Bus";
+        type = typeof(Bus);
     }
+}
