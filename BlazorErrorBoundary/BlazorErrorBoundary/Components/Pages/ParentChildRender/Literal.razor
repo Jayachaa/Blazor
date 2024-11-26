@@ -1,0 +1,23 @@
+﻿<div>
+	<h4>Literal</h4>
+	@ChildContent
+</div>
+
+@code {
+	[Parameter]
+	public RenderFragment ChildContent { get; set; }
+
+	[Parameter]
+	public EventCallback OnChildContentRendered { get; set; }
+
+	private bool isFirstRender = true;
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		if (firstRender && isFirstRender)
+		{
+			isFirstRender = false; // Ensure this runs only once
+			OnChildContentRendered.InvokeAsync(); // Notify the parent
+		}
+	}
+}

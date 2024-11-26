@@ -1,0 +1,32 @@
+﻿@page "/GroupBox"
+
+<h3>GroupBox</h3>
+
+<Literal ChildContent="ChildContentFragment" OnChildContentRendered="HandleChildContentRendered" />
+
+<p><strong>Parent message:</strong> @parentMessage</p>
+
+@code {
+	private string parentMessage = "Waiting for child content to render...";
+
+	// Called when child content is rendered
+	private void HandleChildContentRendered()
+	{
+		parentMessage = "Child content has been rendered!";
+	}
+
+	// Content to render inside the child component
+	private RenderFragment ChildContentFragment => builder =>
+	                                               {
+		                                               builder.OpenElement(0, "p");
+		                                               builder.AddContent(1, "This is the child content rendered by the child component.");
+		                                               builder.CloseElement();
+	                                               };
+	protected override void OnAfterRender(bool firstRender)
+	{
+		if (firstRender)
+		{
+			
+		}
+	}
+}
